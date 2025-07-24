@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Volunteers</title>
+</head>
+<body>
+    <h1>All Signed-up Volunteers</h1>
+    <ul>
+        {% for volunteer in volunteers %}
+            <li>{{ volunteer.name }} - {{ volunteer.instrument }} - {{ volunteer.availability }}</li>
+        {% else %}
+            <li>No volunteers signed up yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
