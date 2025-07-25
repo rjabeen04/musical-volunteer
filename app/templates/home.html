@@ -34,6 +34,17 @@
             text-shadow: 2px 2px 4px #000;
         }
 
+        .mission {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            line-height: 1.6;
+        }
+
         nav a {
             display: inline-block;
             margin: 10px 20px;
@@ -62,6 +73,12 @@
 </head>
 <body>
     <h1>Welcome to Musical Volunteers!</h1>
+
+    <div class="mission">
+        Our mission is to bring joy, connection, and healing through live music. We connect passionate volunteers—
+        students, hobbyists, and professionals—with senior and elder care homes for heartwarming performances
+        that uplift spirits and foster community.
+    </div>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
