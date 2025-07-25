@@ -1,8 +1,81 @@
 <!DOCTYPE html>
-<html>
-<head><title>Musical Volunteers</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Musical Volunteers</title>
+    <style>
+        /* Background with overlay */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url("{{ url_for('static', filename='images/music-bg.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Dark overlay to improve text contrast */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 10px 20px;
+            padding: 12px 24px;
+            background-color: #ff6f61;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #ff3b2f;
+        }
+
+        /* Flash message styling */
+        .flash-message {
+            margin-bottom: 20px;
+            color: #ffd700;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+    </style>
+</head>
 <body>
     <h1>Welcome to Musical Volunteers!</h1>
-    <a href="/volunteer">Volunteer Sign-Up</a>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div>
+          {% for category, message in messages %}
+            <p class="flash-message">{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <nav>
+        <a href="{{ url_for('main.volunteer') }}">Volunteer Sign-Up</a>
+        <a href="{{ url_for('main.contact') }}">Contact Us</a>
+    </nav>
 </body>
 </html>

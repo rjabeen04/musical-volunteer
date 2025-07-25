@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, current_app
+from flask import Blueprint, render_template, request, current_app, flash, redirect, url_for
 import json
 
 main = Blueprint('main', __name__)
@@ -26,3 +26,31 @@ def list_volunteers():
     stored = redis_client.lrange('volunteers', 0, -1)
     volunteers = [json.loads(v) for v in stored]
     return render_template('volunteers.html', volunteers=volunteers)
+
+@main.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        data = {
+            'name': name,
+            'email': email,
+            'message': message
+        }
+
+        redis_client = current_app.redis_client
+        redis_client.rpush('contact_messages', json.dumps(data))
+
+        flash('Thank you for contacting us!', 'success')
+        return redirect(url_for('main.home'))
+
+    return render_template('contact.html')
+
+@main.route('/contact_submissions')
+def contact_submissions():
+    redis_client = current_app.redis_client
+    stored = redis_client.lrange('contact_messages', 0, -1)
+    messages = [json.loads(msg) for msg in stored]
+    return render_template('contact_submissions.html', messages=messages)
