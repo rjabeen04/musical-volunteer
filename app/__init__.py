@@ -6,9 +6,10 @@ from flask import Flask
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = os.getenv("SECRET_KEY", "dev-only-secret-key")
 
     # -----------------------
-    # Basic logging
+    # Basic logging (optional)
     # -----------------------
     logging.basicConfig(level=logging.INFO)
     logging.info("Starting Musical Volunteer app")
@@ -19,10 +20,12 @@ def create_app():
     app.config["REDIS_HOST"] = os.getenv("REDIS_HOST", "localhost")
     app.config["REDIS_PORT"] = int(os.getenv("REDIS_PORT", "6379"))
 
-    logging.info(
-        f"Redis config host={app.config['REDIS_HOST']} "
-        f"port={app.config['REDIS_PORT']}"
-    )
+    # -----------------------
+    # Basic print logging (stdout)
+    # -----------------------
+    print("Starting Flask app...")
+    print(f"Redis Host: {app.config['REDIS_HOST']}")
+    print(f"Redis Port: {app.config['REDIS_PORT']}")
 
     # -----------------------
     # Redis client (attached to app)
@@ -33,11 +36,19 @@ def create_app():
         decode_responses=True
     )
 
+    # Optional: Redis connectivity check
     try:
         app.redis_client.ping()
-        logging.info("Redis connection successful")
+        print("Redis connection successful")
     except Exception:
-        logging.warning("Redis not reachable (app still starts)", exc_info=True)
+        print("Redis not reachable (app still starts)")
+
+    # -----------------------
+    # Request-level logging
+    # -----------------------
+    @app.before_request
+    def log_request():
+        print("Incoming request")
 
     # -----------------------
     # Register blueprints
