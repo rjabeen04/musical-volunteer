@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, current_app, flash, redirect, url_for
-import json
+from flask import Blueprint, render_template, request, current_app, flash, redirect, url_for, jsonify
+
 
 main = Blueprint('main', __name__)
 
@@ -54,3 +54,8 @@ def contact_submissions():
     stored = redis_client.lrange('contact_messages', 0, -1)
     messages = [json.loads(msg) for msg in stored]
     return render_template('contact_submissions.html', messages=messages)
+
+@main.route("/health", methods=["GET"])
+def health():
+    return jsonify(status="ok"), 200
+
