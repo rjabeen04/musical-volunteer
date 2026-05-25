@@ -58,4 +58,11 @@ def contact_submissions():
 @main.route("/health", methods=["GET"])
 def health():
     return jsonify(status="ok"), 200
+@main.route("/load")
+def load():
+    x = 0
+    for i in range(10_000_000):
+        x += i
+    return "CPU load generated!"
+
 
