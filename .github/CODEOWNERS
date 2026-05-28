@@ -1,0 +1,14 @@
+# Default owner for everything in the repo
+* @rjabeen04
+
+# App code
+/app/ @rjabeen04
+
+# Infrastructure (future)
+#/infra/ @rjabeen04
+
+# Workflows
+/.github/workflows/ @rjabeen04
+
+# Docs
+/docs/ @rjabeen04

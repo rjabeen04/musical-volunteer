@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Volunteer Sign-Up</title>
+</head>
+<body>
+  <h2>Volunteer Sign-Up</h2>
+  
+  <form method="POST" action="{{ url_for('main.volunteer') }}">
+    <label for="name">Name:</label><br>
+    <input type="text" name="name" id="name" required><br><br>
+
+    <label for="instrument">Instrument:</label><br>
+    <input type="text" name="instrument" id="instrument" required><br><br>
+
+    <label for="availability">Availability:</label><br>
+    <input type="text" name="availability" id="availability" required><br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <br>
+
+  <!-- Navigation links -->
+  <a href="{{ url_for('main.home') }}">🏠 Back to Home</a> | 
+  <a href="{{ url_for('main.list_volunteers') }}">👥 See All Signed-Up Volunteers</a>
+
+</body>
+</html>

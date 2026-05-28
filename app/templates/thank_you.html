@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thank You</title>
+</head>
+<body>
+  <h2>Thanks, {{ name }}! We Appreciate It!</h2>
+  <p>We will match you with a care home soon.</p>
+
+  <p>
+    <a href="{{ url_for('main.home') }}">🏠 Back to Home</a> | 
+    <a href="{{ url_for('main.volunteer') }}">➕ Add Another Volunteer</a> | 
+    <a href="{{ url_for('main.list_volunteers') }}">👥 See All Signed-Up Volunteers</a>
+  </p>
+</body>
+</html>
