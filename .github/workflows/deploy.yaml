@@ -8,7 +8,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: musical-volunteer
-  EKS_CLUSTER_NAME: secureguard-cluster
+  EKS_CLUSTER_NAME: project-eks
   HELM_RELEASE_NAME: python-app-release
 
 jobs:
