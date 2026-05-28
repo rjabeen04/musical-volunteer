@@ -1,0 +1,36 @@
+replicaCount: 2
+
+image:
+  repository: 716147851058.dkr.ecr.us-east-1.amazonaws.com/musical-volunteer
+  tag: "v7"
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  host: python.dev.example.com
+
+resources:
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+
+hpa:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPU: 50
+
+pdb:
+  enabled: true
+  minAvailable: 1
+
+rbac:
+  create: true
+

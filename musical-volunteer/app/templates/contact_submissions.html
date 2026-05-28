@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Contact Form Submissions</title></head>
+<body>
+    <h2>Contact Form Submissions</h2>
+    <ul>
+        {% for msg in messages %}
+            <li><strong>{{ msg.name }}</strong> ({{ msg.email }}): {{ msg.message }}</li>
+        {% else %}
+            <li>No submissions yet.</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('main.home') }}">Back to Home</a>
+</body>
+</html>

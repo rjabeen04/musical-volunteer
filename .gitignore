@@ -1,0 +1,11 @@
+.kube/
+.docker/
+.cache/
+.config/
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.zprofile
+.zshrc
+.lesshst
