@@ -15,7 +15,11 @@ jobs:
   deploy:
     name: Build, Push, and Deploy
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4   
     steps:
     # 1. Checkout the source code from your repository
     - name: Checkout Code
