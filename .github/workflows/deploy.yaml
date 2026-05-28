@@ -45,7 +45,8 @@ jobs:
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          # Save the explicit IMAGE_TAG string to outputs so step 7 can grab it
+          echo "image_tag=$IMAGE_TAG" >> $GITHUB_OUTPUT
 
       # 5. Connect to your EKS Cluster by updating the kubeconfig context
       - name: Update Kubeconfig
